@@ -1,5 +1,9 @@
 <main class="container-fluid user-select-none">
-    <?php include_once("includes/tags.php"); ?>
+
+    <?php
+    include_once("includes/tags.php");
+    ?>
+    <div id="content"></div>
 
     <div class="row">
         <!-- 底部的锚点 -->

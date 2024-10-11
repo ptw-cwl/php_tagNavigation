@@ -4,16 +4,22 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
-// 搜索跳转
-function searchTag() {
-  var inputValue = document.getElementById('searchInput').value;
-  jump(inputValue);
+function sendTagByInput() {
+  var tagName = document.getElementById('searchTagInput').value;
+  sendTagByName(tagName);
 }
 
-// 跳转路径
-function jump(value) {
-  if (value) {
-    window.location.hash = value.trim();
-  }
-}
+function sendTagByName(tagName) {
+  $.ajax({
+    url: 'searchTag.php',
+    type: 'POST',
+    data: { name: tagName },
 
+    success: function (response) {
+      $('#content').html(response);
+    },
+    error: function (xhr, status, error) {
+      console.log("请求失败：", status, error);
+    }
+  });
+}
