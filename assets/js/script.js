@@ -38,7 +38,7 @@ function scrollToBottom(scrollTarget) {
   } else {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: 'smooth'  // 平滑滚动
+      behavior: 'smooth' 
     });
   }
 }

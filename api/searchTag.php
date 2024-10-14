@@ -9,7 +9,10 @@ if (isset($_POST['name'])) {
     exit;
 }
 
+//关联标签
 $associationTags = selectAssociationTags($tagName);
+//链接
+$links = selectLinks($tagName);
 // 开启输出缓冲
 ob_start();
 ?>
@@ -40,8 +43,33 @@ ob_start();
 </div>
 
 <div class="container-fluid user-select-none">
-
-</div>  
+    <div id="fold_{{ link.tagId }}" class="row collapse show">
+        <?php foreach ($links as $link): ?>
+            <?php if (!empty($link['name']) && !empty($link['href'])): ?>
+                <div class="col-lg-3">
+                    <div class="card m-2 border shadow-sm user-select-none">
+                        <div class="card-body text-truncate">
+                            <?php if (!empty($link['icon'])): ?>
+                                <img src="<?= $link['icon'] ?>" alt="<?= $link['name'] ?>">
+                            <?php endif; ?>
+                            <a href="<?= $link['href'] ?>" class="text-decoration-none" target="_blank" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" title="<?= $link['name'] ?> <?= $link['href'] ?>">
+                                <?= $link['name'] ?>
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <?php foreach ($link['tags'] as $tag): ?>
+                                <button type="button" class="btn badge bg-info" onclick="sendTagByName('<?= $tag ?>')">
+                                    <?= $tag ?>
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
 
 <?php
 // 获取缓冲区内容并清除缓冲
