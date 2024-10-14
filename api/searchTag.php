@@ -2,17 +2,6 @@
 //初始化
 require("../config.php");
 
-// 开启错误报告
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// 输出请求方法
-file_put_contents('log.txt', '请求方法: ' . $_SERVER['REQUEST_METHOD'] . PHP_EOL, FILE_APPEND);
-
-// CORS 处理
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
-
 if (isset($_POST['name'])) {
     $tagName = $_POST['name'];
 } else {
@@ -25,7 +14,7 @@ $associationTags = selectAssociationTags($tagName);
 ob_start();
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid user-select-none">
     <div class="row">
 
         <div class="col-12 py-5">
@@ -41,12 +30,18 @@ ob_start();
             </button>
             <div id="associationTags" class="collapse shadow-sm p-2">
                 <?php foreach ($associationTags as $associationTag): ?>
-                    <a href="#<?= $associationTag ?>" class="btn badge bg-info"><?= $associationTag ?></a>
+                    <button type="button" class="btn badge bg-info" onclick="sendTagByName('<?= $associationTag ?>')">
+                        <?= $associationTag ?>
+                    </button>
                 <?php endforeach; ?>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container-fluid user-select-none">
+
+</div>  
 
 <?php
 // 获取缓冲区内容并清除缓冲

@@ -14,15 +14,13 @@
 
 </head>
 
-<body>
+<body class="user-select-none vh-100">
 
-    <ptw-cwl class="container-fluid">
-        <?php
-        include_once("layouts/nav.php");
-        include_once("layouts/body.php");
-        include_once("layouts/footer.php");
-        ?>
-    </ptw-cwl>
+    <?php
+    include_once("layouts/nav.php");
+    include_once("layouts/body.php");
+    include_once("layouts/footer.php");
+    ?>
 
     <!-- Bootstrap5  -->
     <script src="/assets/bootstrap-5.1.3/js/bootstrap.min.js"></script>
