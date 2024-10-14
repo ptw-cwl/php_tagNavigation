@@ -14,14 +14,15 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 function scrollToTop(scrollTarget) {
   if (scrollTarget) {
     const targetElement = document.querySelector(scrollTarget);
+    const behavior = 'smooth';
     targetElement.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: behavior
     });
   } else {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: behavior
     });
   }
 
@@ -31,14 +32,15 @@ function scrollToTop(scrollTarget) {
 function scrollToBottom(scrollTarget) {
   if (scrollTarget) {
     const targetElement = document.querySelector(scrollTarget);
+    const behavior = 'smooth';
     targetElement.scrollTo({
       top: targetElement.scrollHeight,
-      behavior: 'smooth'
+      behavior: behavior
     });
   } else {
     window.scrollTo({
       top: document.body.scrollHeight,
-      behavior: 'smooth' 
+      behavior: behavior
     });
   }
 }
