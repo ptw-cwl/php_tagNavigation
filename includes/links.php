@@ -1,5 +1,5 @@
-<div class="container-fluid user-select-none p-3">
-    <div class="card">
+<div class="container-fluid user-select-none">
+    <div class="card m-3">
         <div class="card-body">
             <div class="d-flex justify-content-center align-items-center">
                 <h3 class="me-2"><?= $tagName ?></h3>
@@ -20,10 +20,10 @@
                 </div>
             <?php else: ?>
                 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
 
+                    <div class="carousel-inner">
                         <?php foreach ($groupAssociationTags as $index => $groupAssociationTag): ?>
-                            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                            <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
                                 <div class="d-flex justify-content-center">
                                     <?php foreach ($groupAssociationTag as $associationTag): ?>
                                         <button type="button" class="btn badge bg-info m-1"
@@ -38,12 +38,16 @@
                     </div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        上一组
+                        <span class="carousel-control-prev-icon bg-dark bg-opacity-75"></span>
+                        <span class="visually-hidden">上一组</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        下一组
+                    <button class="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-dark bg-opacity-75"></span>
+                        <span class="visually-hidden">下一组</span>
                     </button>
+
                 </div>
+
             <?php endif; ?>
         </div>
     </div>
@@ -57,7 +61,7 @@
 
     <div class="row user-select-none">
         <?php foreach ($links as $link): ?>
-            
+
             <?php
             if (empty($link['name']) || empty($link['href'])) {
                 continue;
