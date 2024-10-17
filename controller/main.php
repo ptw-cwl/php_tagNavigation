@@ -25,10 +25,9 @@
     <!-- Bootstrap5  -->
     <script src="/assets/bootstrap-5.1.3/js/bootstrap.min.js"></script>
     <!-- jquery  -->
-    <script src="/assets/jquery/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
     <!-- js -->
     <script src="/assets/js/script.js"></script>
-
 </body>
 
 </html>
