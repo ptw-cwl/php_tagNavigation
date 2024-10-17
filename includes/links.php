@@ -1,4 +1,4 @@
-<div class="container-fluid user-select-none">
+<div class="container user-select-none">
     <div class="card m-3">
         <div class="card-body">
             <div class="d-flex justify-content-center align-items-center">
@@ -59,40 +59,43 @@
     }
     ?>
 
-    <div class="row user-select-none">
-        <?php foreach ($links as $link): ?>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 user-select-none">
+            <?php foreach ($links as $link): ?>
+                <?php
+                if (empty($link['name']) || empty($link['href'])) {
+                    continue;
+                }
+                ?>
+                <div class="col user-select-none">
+                    <div class="card m-2 border shadow-sm user-select-none">
+                        
+                        <div class="card-body d-flex align-items-center">
+                            <?php if (!empty($link['icon'])): ?>
+                                <img src="<?= $link['icon'] ?>" alt="<?= $link['name'] ?>" class="me-2">
+                            <?php endif; ?>
+                            <a href="<?= $link['href'] ?>" class="text-decoration-none flex-grow-1 text-truncate" target="_blank"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= $link['name'] ?> <?= $link['href'] ?>">
+                                <?= $link['name'] ?>
+                            </a>
+                        </div>
 
-            <?php
-            if (empty($link['name']) || empty($link['href'])) {
-                continue;
-            }
-            ?>
-
-            <div class="col-lg-3">
-                <div class="card m-2 border shadow-sm user-select-none">
-                    <div class="card-body text-truncate">
-                        <?php if (!empty($link['icon'])): ?>
-                            <img src="<?= $link['icon'] ?>" alt="<?= $link['name'] ?>">
-                        <?php endif; ?>
-                        <a href="<?= $link['href'] ?>" class="text-decoration-none" target="_blank" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="<?= $link['name'] ?> <?= $link['href'] ?>">
-                            <?= $link['name'] ?>
-                        </a>
-                    </div>
-                    <div class="card-footer">
-                        <?php foreach ($link['tags'] as $tag): ?>
-                            <button type="button" class="btn badge bg-info"
-                                onclick="<?php if ($tag === $tagName) {
-                                                echo "scrollToTop('main')";
-                                            } else {
-                                                echo "sendTagByName('{$tag}')";
-                                            } ?>">
-                                <?= $tag ?>
-                            </button>
-                        <?php endforeach; ?>
+                        <div class="card-footer d-flex flex-wrap">
+                            <?php foreach ($link['tags'] as $tag): ?>
+                                <button type="button" class="btn badge bg-info me-1 mb-1"
+                                    onclick="<?php if ($tag === $tagName) {
+                                                    echo "scrollToTop('main')";
+                                                } else {
+                                                    echo "sendTagByName('{$tag}')";
+                                                } ?>">
+                                    <?= $tag ?>
+                                </button>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
+
 </div>

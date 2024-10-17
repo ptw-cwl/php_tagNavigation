@@ -14,7 +14,7 @@ $tagName = $_POST['name'];
 //关联标签
 $associationTags = selectAssociationTags($tagName);
 //分组后的关联标签
-$groupAssociationTags = array_chunk($associationTags, 20);
+$groupAssociationTags = array_chunk($associationTags, 15);
 //链接
 $links = selectLinks($tagName);
 
