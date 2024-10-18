@@ -13,45 +13,48 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <?php if (empty($groupAssociationTags)): ?>
-                        <div class="carousel-item active">
-                            <div class="d-flex justify-content-center">
-                                <p>没有关联标签</p>
-                            </div>
-                        </div>
-                    <?php else: ?>
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <?php if (!empty($associationTags)): ?>
+                    <div class="card-footer">
 
-                            <div class="carousel-inner">
-                                <?php foreach ($groupAssociationTags as $index => $groupAssociationTag): ?>
-                                    <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
-                                        <div class="d-flex justify-content-center">
-                                            <?php foreach ($groupAssociationTag as $associationTag): ?>
-                                                <button type="button" class="btn badge bg-info m-1"
-                                                    onclick="sendTagByName('<?= htmlspecialchars($associationTag, ENT_QUOTES) ?>')">
-                                                    <?= htmlspecialchars($associationTag, ENT_QUOTES) ?>
-                                                </button>
-                                            <?php endforeach; ?>
+                        <?php if (count($associationTags) > $groupNumber): ?>
+                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php foreach ($groupAssociationTags as $index => $groupAssociationTag): ?>
+                                        <div class="carousel-item <?= $index === 0 ? 'active' : ''; ?>">
+                                            <div class="d-flex justify-content-center">
+                                                <?php foreach ($groupAssociationTag as $associationTag): ?>
+                                                    <button type="button" class="btn badge bg-info m-1"
+                                                        onclick="sendTagByName('<?= htmlspecialchars($associationTag, ENT_QUOTES) ?>')">
+                                                        <?= htmlspecialchars($associationTag, ENT_QUOTES) ?>
+                                                    </button>
+                                                <?php endforeach; ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                </div>
 
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark bg-opacity-75"></span>
+                                    <span class="visually-hidden">上一组</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark bg-opacity-75"></span>
+                                    <span class="visually-hidden">下一组</span>
+                                </button>
                             </div>
+                        <?php else: ?>
+                            <div class="d-flex justify-content-center">
+                                <?php foreach ($associationTags as $associationTag): ?>
+                                    <button type="button" class="btn badge bg-info m-1"
+                                        onclick="sendTagByName('<?= htmlspecialchars($associationTag, ENT_QUOTES) ?>')">
+                                        <?= htmlspecialchars($associationTag, ENT_QUOTES) ?>
+                                    </button>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
 
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon bg-dark bg-opacity-75"></span>
-                                <span class="visually-hidden">上一组</span>
-                            </button>
-                            <button class="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                <span class="carousel-control-next-icon bg-dark bg-opacity-75"></span>
-                                <span class="visually-hidden">下一组</span>
-                            </button>
-
-                        </div>
-
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -65,11 +68,13 @@
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 user-select-none">
         <?php foreach ($links as $link): ?>
+
             <?php
             if (empty($link['name']) || empty($link['href'])) {
                 continue;
             }
             ?>
+            
             <div class="col user-select-none">
                 <div class="card border shadow-sm user-select-none">
 

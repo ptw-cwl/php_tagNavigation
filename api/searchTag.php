@@ -13,12 +13,13 @@ $tagName = $_POST['name'];
 
 //关联标签
 $associationTags = selectAssociationTags($tagName);
+
 //分组数
 $groupNumber = 15;
 //分组后的关联标签
-$groupAssociationTags = array_chunk($associationTags, $groupNumber);
+$groupAssociationTags =  array_chunk($associationTags, $groupNumber);
+
 //链接
 $links = selectLinks($tagName);
 
 include_once(BASE_URL . "includes/links.php");
-?>
