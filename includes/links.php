@@ -74,7 +74,7 @@
                 continue;
             }
             ?>
-            
+
             <div class="col user-select-none">
                 <div class="card border shadow-sm user-select-none">
 
@@ -83,7 +83,7 @@
                             <img src="<?= $link['icon'] ?>" alt="<?= $link['name'] ?>" class="me-2">
                         <?php endif; ?>
                         <a href="<?= $link['href'] ?>" class="text-decoration-none flex-grow-1 text-truncate" target="_blank"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?= $link['name'] ?> <?= $link['href'] ?>">
+                            data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="<?= $link['name'] ?> <br> <?= $link['href'] ?>">
                             <?= $link['name'] ?>
                         </a>
                     </div>
@@ -100,7 +100,9 @@
                             </button>
                         <?php endforeach; ?>
                     </div>
+
                 </div>
+
             </div>
         <?php endforeach; ?>
     </div>
